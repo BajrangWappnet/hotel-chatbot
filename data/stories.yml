@@ -1,0 +1,21 @@
+version: "3.1"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+
+- story: where the user  get asked for the hotel booking id number
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: provide_booking_id
+    entities:
+    - booking_id: '4545454'  # This can be any valid booking ID
+  - action: action_check_booking
+
+
+

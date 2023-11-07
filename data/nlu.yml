@@ -1,0 +1,74 @@
+version: "3.1"
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+- intent: provide_booking_id
+  examples: |
+    - My booking ID is [12345](booking_id).
+    - I have a booking with ID [X1Y2Z3](booking_id).
+    - my id is [4545454](booking_id)
+    - my booking id is this [123456](booking_id)
+    - booking id is [985647](booking_id)
+    - [1234567](booking_id)
+    - [4545564](booking_id)
+    - yeah sure have my booking id [7896543](booking_id)
+
+- intent: give_feedback
+  examples: |
+    - I want to provide feedback.
+    - Can I leave feedback for my ?
+    - I want to give feedback.
+    - I want to leave feedback.
+    - feedback
+
+  
+- intent: numbers
+  examples: |
+    - my number is [1](number)
+    - my number is [2](number)
+    - my number is [5](number)
+    - my number is [3](number)
+    - my number is [4](number)
+

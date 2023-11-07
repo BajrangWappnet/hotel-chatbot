@@ -1,0 +1,127 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - give_feedback
+  - provide_booking_id
+  - numbers
+
+entities:
+  - booking_id
+  - number
+  
+
+slots:
+  booking_id:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: booking_id
+
+  booking_id_found:
+    type: bool
+    influence_conversation: true
+    mappings:
+    - type: from_intent
+      value: false
+  
+  feedback_choice_selected:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: number
+
+  feedback_issues:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: number
+
+  
+forms:
+  feedback_form:
+    required_slots:
+      - feedback_choice_selected
+      - feedback_issues
+
+
+
+actions:
+  - action_check_booking
+  - action_save_feedb
+  - action_set_booking_id
+  - action_chat_restart
+
+
+responses:
+  utter_greet:
+  - text: "Hey! Please tell me your hotel booking ID number?"
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+  utter_bot_fallback:
+  - text: I'm sorry, I didn't quite understand that. Could you rephrase?
+
+  utter_provide_feedback:
+  - text: Sure, I can help with that. Please provide your booking ID.
+
+  utter_booking_id_not_found:
+  - text: I couldn't find a booking with that ID. Please double-check and provide the correct booking ID.
+
+  utter_feedback_prompt:
+  - text: Great! Please share your feedback for the booking.
+
+  utter_submit: 
+  - text: Thanks for your feedback! Have a great day!
+
+  utter_ask_feedback_form_feedback_choice_selected:
+  - text: "Please provide your feedback for the following categories."
+    buttons: 
+    - title: "Cleaning"
+      payload: '/numbers{{"number":"1"}}'
+    - title: "Room Comfort"
+      payload: '/numbers{{"number":"2"}}'
+    - title: "Staff Friendliness"
+      payload: '/numbers{{"number":"3"}}'
+    - title: "Food Quality"
+      payload: '/numbers{{"number":"4"}}'
+    - title: "Overall Experience"
+      payload: '/numbers{{"number":"5"}}'
+
+  utter_ask_feedback_form_feedback_issues:
+  - text: "Please describe how was your service."
+    buttons: 
+    - title: "Poor"
+      payload: '/numbers{{"number":"1"}}'
+    - title: "Fair"
+      payload: '/numbers{{"number":"2"}}'
+    - title: "Good"
+      payload: '/numbers{{"number":"3"}}'
+    - title: "Very Good"
+      payload: '/numbers{{"number":"4"}}'
+    - title: "Excellent"
+      payload: '/numbers{{"number":"5"}}'
+
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
